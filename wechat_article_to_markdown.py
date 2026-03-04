@@ -54,6 +54,11 @@ def extract_publish_time(html: str) -> str:
     if m:
         return format_timestamp(int(m.group(1)))
 
+    # 兼容双引号与 = 赋值风格
+    m = re.search(r'create_time\s*[:=]\s*["\']?(\d+)["\']?', html)
+    if m:
+        return format_timestamp(int(m.group(1)))
+
     return ""
 
 
@@ -235,13 +240,11 @@ def convert_to_markdown(content_html: str, code_blocks: list[dict]) -> str:
 
 def replace_image_urls(md: str, url_map: dict[str, str]) -> str:
     """替换 Markdown 中的远程图片链接为本地路径"""
-
-    def _replace(m):
-        alt, img_url = m.group(1), m.group(2)
-        local = url_map.get(img_url)
-        return f"![{alt}]({local})" if local else m.group(0)
-
-    return re.sub(r"!\[([^\]]*)\]\(([^)]+)\)", _replace, md)
+    # Use exact URL matching to avoid regex edge cases such as ')' in URL.
+    for remote_url, local_path in url_map.items():
+        pattern = re.compile(r"!\[([^\]]*)\]\(" + re.escape(remote_url) + r"\)")
+        md = pattern.sub(lambda m: f"![{m.group(1)}]({local_path})", md)
+    return md
 
 
 def build_markdown(meta: dict, body_md: str) -> str:
