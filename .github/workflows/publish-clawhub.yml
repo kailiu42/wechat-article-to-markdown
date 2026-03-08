@@ -12,7 +12,7 @@ jobs:
     permissions:
       contents: read
     env:
-      CLAWHUB_SLUG: wechat-article
+      CLAWHUB_SLUG: wechat-article-to-markdown
       CLAWHUB_NAME: wechat-article-to-markdown
 
     steps:
