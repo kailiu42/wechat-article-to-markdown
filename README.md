@@ -102,13 +102,9 @@ curl -o ~/.claude/skills/wechat-article-to-markdown/SKILL.md \
 
 After adding the file, restart Claude Code to reload skills.
 
-### OpenClaw / ClawHub
+### ~~OpenClaw / ClawHub~~ (Deprecated)
 
-Officially supports [OpenClaw](https://openclaw.ai) and [ClawHub](https://docs.openclaw.ai/tools/clawhub):
-
-```bash
-clawhub install wechat-article-to-markdown
-```
+> ⚠️ ClawHub install method is deprecated and no longer supported. Use [Skills CLI](#skills-cli-recommended) or Manual Install above.
 
 ## PyPI Publishing (GitHub Actions)
 
@@ -171,11 +167,9 @@ curl -o ~/.claude/skills/wechat-article-to-markdown/SKILL.md \
   https://raw.githubusercontent.com/jackwener/wechat-article-to-markdown/main/SKILL.md
 ```
 
-### OpenClaw / ClawHub
+### ~~OpenClaw / ClawHub~~（已过时）
 
-```bash
-clawhub install wechat-article-to-markdown
-```
+> ⚠️ ClawHub 安装方式已过时，不再支持。请使用上方的 Skills CLI 或手动安装。
 
 ## License
 
